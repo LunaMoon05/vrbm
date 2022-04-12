@@ -1,0 +1,42 @@
+@import '../../global.scss';
+
+.categories {
+  width: 100%;
+  border-bottom: 1px solid #DEE2E6;
+  margin-bottom: 15px;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+}
+
+.btn {
+  font-size: 15px;
+  color: $main-c;
+  transition: .07s ease-in-out color;
+  &:hover {
+    color: black;
+  }
+  &Active {
+    color: black;
+    &:hover {
+      color: $main-c;
+    }
+  }
+}
+
+.widgets {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.select {
+  width: 193px;
+  min-height: 32px;
+}
+
+.topBar {
+  margin-bottom: 40px;
+}
