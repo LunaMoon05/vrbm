@@ -1,0 +1,14 @@
+@import '../../../global.scss';
+
+.btn {
+  padding: 8px 10px;
+  border: 1px solid $main-c;
+  color: $main-c;
+  font-size: 15px;
+  border-radius: 3px;
+  transition: .1s ease-in-out color, .1s ease-in-out background-color;
+  &:hover {
+    color: white;
+    background-color: $main-c;
+  }
+}

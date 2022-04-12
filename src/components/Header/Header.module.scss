@@ -1,0 +1,19 @@
+@import '../../global.scss';
+
+.header {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  background-color: #F1F3F4;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 139px;
+  height: 59px;
+}
