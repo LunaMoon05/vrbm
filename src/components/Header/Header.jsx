@@ -1,7 +1,7 @@
 import React from 'react'
 import { MainBtn } from '../common/MainBtn/MainBtn'
 import s from './Header.module.scss'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/images/logo.svg'
 
 export const Header = () => {
   return (

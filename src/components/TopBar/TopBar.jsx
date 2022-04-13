@@ -1,50 +1,41 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from './TopBar.module.scss'
 import Select from 'react-select';
 
-export const TopBar = () => {
+export const TopBar = props => {
+  const {categories, setCategories, currentCat, setCurrentCat} = props
   const initCats = true ? [
     {
       id: 1,
-      text: 'Пользователи',
-      isActive: true,
+      text: 'Пользователи'
     },
     {
       id: 2,
-      text: 'Лицензии',
-      isActive: false,
+      text: 'Лицензии'
     }
   ] : [
     {
       id: 1,
-      text: 'Сцены',
-      isActive: false,
+      text: 'Сцены'
     },
     {
       id: 2,
-      text: 'Фото 360',
-      isActive: false,
+      text: 'Фото 360'
     },
     {
       id: 3,
-      text: '3D Модели',
-      isActive: false,
+      text: '3D Модели'
     },
     {
       id: 4,
-      text: 'Пользователи',
-      isActive: true,
+      text: 'Пользователи'
     },
   ]
-  const [categories, setCategories] = useState(initCats)
-  const categoryHandler = id => {
-    const newCategories = categories.map(item => {
-      if(item.id === id) {
-        return {...item, isActive: true}
-      }
-      return {...item, isActive: false}
-    })
-    setCategories(newCategories)
+  useEffect(() => {
+    setCategories(initCats)
+  }, [])
+  const categoryHandler = category => {
+    setCurrentCat(category)
   }
   const options = [
     {
@@ -68,7 +59,7 @@ export const TopBar = () => {
           {categories.map((item, index) => {
             return (
               <li key={item.id} style={(index + 1) === categories.length ? null : {marginRight: 80}}>
-                <button onClick={() => categoryHandler(item.id)} className={`${s.btn} ${item.isActive ? s.btnActive : null}`}>{item.text}</button>
+                <button onClick={() => categoryHandler(item.text)} className={`${s.btn} ${currentCat === item.text ? s.btnActive : null}`}>{item.text}</button>
               </li>
             )
           })}
