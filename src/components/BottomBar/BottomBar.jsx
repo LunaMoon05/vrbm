@@ -4,18 +4,6 @@ import arrow from '../../assets/images/arrow.svg'
 
 export const BottomBar = () => {
   return (
-    // <div className={s.pagination}>
-    //   <div className={s.title}>Страницы</div>
-    //   <button className={s.prev}>
-    //     <img src={arrow} alt="Перейти к предыдущей странице" />
-    //   </button>
-    //   <button>1</button>
-    //   <button>2</button>
-    //   <button>3</button>
-    //   <button className={s.next}>
-    //     <img src={arrow} alt="Перейти к предыдущей странице" />
-    //   </button>
-    // </div>
     <div className={s.pages}>
       <div className={s.titleWrapper}>
         <span className={s.title}>Страницы</span>

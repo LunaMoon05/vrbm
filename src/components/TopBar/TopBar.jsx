@@ -4,8 +4,8 @@ import Select from 'react-select';
 import { MainBtn } from '../common/MainBtn/MainBtn';
 
 export const TopBar = props => {
-  const {categories, setLicenses, licenses, userStatus, setCategories, currentCat, setCurrentCat} = props
-  const initCats = true ? [
+  const {categories, setCurrentPopup, setLicenses, licenses, userStatus, setCategories, currentCat, setCurrentCat} = props
+  const initCats = userStatus === 'super' ? [
     {
       id: 1,
       text: 'Пользователи'
@@ -72,7 +72,9 @@ export const TopBar = props => {
           <MainBtn onClick={() => setLicenses('active')} isActive={licenses === 'active'} style={{marginRight: 10}} text='Действующие' />
           <MainBtn onClick={() => setLicenses('blocked')} isActive={licenses === 'blocked'} text='Заблокированные' />
         </div> : null}
-          {currentCat === 'Лицензии' ? <MainBtn text='Новая лицензия' /> : null}
+          {currentCat === 'Лицензии' ? <MainBtn onClick={() => setCurrentPopup('createLicense')} text='Новая лицензия' /> : null}
+          {currentCat === 'Пользователи' && userStatus === 'manager' ? <MainBtn onClick={() => setCurrentPopup('createUser')} text='Новый пользователь' /> : null}
+          {currentCat === '3D Модели' || currentCat === 'Фото 360' ? <MainBtn text='Загрузить' /> : null}
       </div>
     </div>
   )

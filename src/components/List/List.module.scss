@@ -13,6 +13,8 @@
 .item {
   position: relative;
   padding: 23px 0;
+  display: flex;
+  align-items: center;
   font-size: 15px;
   border-bottom: 1px solid $grey;
   &Wrapper {
@@ -26,6 +28,9 @@
 
 .grow {
   width: 18.5%;
+  &Third {
+     width: 25%;
+  }
 }
 
 .position {
