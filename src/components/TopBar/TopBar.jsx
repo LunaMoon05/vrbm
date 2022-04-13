@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import s from './TopBar.module.scss'
 import Select from 'react-select';
+import { MainBtn } from '../common/MainBtn/MainBtn';
 
 export const TopBar = props => {
-  const {categories, setCategories, currentCat, setCurrentCat} = props
+  const {categories, setLicenses, licenses, userStatus, setCategories, currentCat, setCurrentCat} = props
   const initCats = true ? [
     {
       id: 1,
@@ -65,8 +66,13 @@ export const TopBar = props => {
           })}
         </ul>
       </div>
-      <div className={s.widgets}>
-        <Select defaultValue={selectValue} options={options} className={s.select} />
+      <div style={currentCat === 'Лицензии' ? {justifyContent: 'space-between'} : null} className={s.widgets}>
+        {currentCat === 'Пользователи' && userStatus === 'super' ? <Select defaultValue={selectValue} options={options} className={s.select} /> : null}
+        {currentCat === 'Лицензии' ? <div>
+          <MainBtn onClick={() => setLicenses('active')} isActive={licenses === 'active'} style={{marginRight: 10}} text='Действующие' />
+          <MainBtn onClick={() => setLicenses('blocked')} isActive={licenses === 'blocked'} text='Заблокированные' />
+        </div> : null}
+          {currentCat === 'Лицензии' ? <MainBtn text='Новая лицензия' /> : null}
       </div>
     </div>
   )

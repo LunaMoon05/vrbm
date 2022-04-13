@@ -1,4 +1,4 @@
-
+@import '../../global.scss';
 .categories {
   display: flex;
   padding-left: 8.5%;
@@ -14,9 +14,10 @@
   position: relative;
   padding: 23px 0;
   font-size: 15px;
-  border-bottom: 1px solid #808080;
+  border-bottom: 1px solid $grey;
   &Wrapper {
     display: flex;
+    align-items: center;
     width: 100%;
     font-size: 15px;
     padding-left: 8.5%;
@@ -31,4 +32,9 @@
   position: absolute;
   left: 4%;
   font-weight: bold;
+}
+
+.btn {
+  width: 27px;
+  height: 27px;
 }

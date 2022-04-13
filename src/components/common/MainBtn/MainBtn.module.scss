@@ -11,4 +11,12 @@
     color: white;
     background-color: $main-c;
   }
+  &Active {
+    color: white;
+    background-color: $main-c;
+    &:hover {
+      color: $main-c;
+      background-color: white;
+    }
+  }
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 import s from './List.module.scss'
+import { ListItem } from './ListItem/ListItem'
 
 export const List = props => {
-  const {listTypes, setListTypes} = props
+  const {listTypes, licenses, setListTypes} = props
   return (
     <section className={s.section}>
       <div className={s.categories}>
@@ -15,16 +16,7 @@ export const List = props => {
         })}
       </div>
       <div>
-        <div className={s.item}>
-          <div className={s.position}>1</div>
-          <div className={s.itemWrapper}>
-            <div className={s.grow}>Имя</div>
-            <div className={s.grow}>Фамилия</div>
-            <div className={s.grow}>E-mail</div>
-            <div className={s.grow}>Организация</div>
-            <div className={s.grow}>Роль</div>
-          </div>
-        </div>
+        <ListItem data={{fourthCol: 's'}} licenses={licenses} />
       </div>
     </section>
   )

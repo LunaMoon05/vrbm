@@ -1,0 +1,54 @@
+@import '../../global.scss';
+
+.pages {
+  display: flex;
+  max-height: 32px;
+  margin-top: 30px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  padding: 7px 0;
+  border: 1px solid $grey;
+}
+
+.title {
+  position: relative;
+  font-size: 15px;
+  color: $grey;
+  padding: 0 10px;
+}
+
+.widget {
+  display: flex;
+  button {
+    transition: .07s linear background, .07s linear color;
+    &:hover {
+      background-color: $main-c;
+      color: white;
+    }
+  }
+}
+
+.btn {
+  width: 27px;
+  height: 100%;
+  border: 1px solid $grey;
+  display: flex;
+  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  width: 27px;
+  height: 100%;
+  font-size: 15px;;
+  border-top: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+  &Active {
+    background-color: $main-c;
+    color: white;
+  }
+}
