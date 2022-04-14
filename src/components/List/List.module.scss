@@ -12,7 +12,8 @@
 
 .item {
   position: relative;
-  padding: 23px 0;
+  padding: 22px 0;
+  height: 65px;
   display: flex;
   align-items: center;
   font-size: 15px;
@@ -29,7 +30,7 @@
 .grow {
   width: 18.5%;
   &Third {
-     width: 25%;
+     width: 23%;
   }
 }
 

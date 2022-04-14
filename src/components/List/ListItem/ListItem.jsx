@@ -13,7 +13,7 @@ export const ListItem = props => {
         <div className={s.grow}>{data?.secondCol ?? 'Фамилия'}</div>
         <div className={`${s.grow} ${s.growThird}`}>{data?.thirdCol ?? 'E-mail'}</div>
         {data?.fourthCol && <div className={s.grow}>{data?.fourthCol}</div>}
-        <div className={s.grow}>{data?.fifthCol ?? 'Роль'}</div>
+        <div style={licenses === 'blocked' ? {width: '10%'} : null} className={s.grow}>{data?.fifthCol ?? 'Роль'}</div>
         {licenses === 'active' ? 
         <button onClick={() => setCurrentPopup('deleteLicense')} className={s.btn}>
           <img src={deleteIcon} alt="" />
