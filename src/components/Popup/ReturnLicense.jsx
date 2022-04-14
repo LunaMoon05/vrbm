@@ -13,7 +13,7 @@ export const ReturnLicense = props => {
     accountsCount: yup.number().required('Обязательное поле').typeError('Введите число'),
     endDate: yup.string().required('Обязательное поле'),
   })
-  const { register, handleSubmit, setValue, formState:{ errors } } = useForm({
+  const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
   });
   const onSubmit = () => {

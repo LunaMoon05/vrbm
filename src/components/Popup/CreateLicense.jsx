@@ -23,7 +23,7 @@ export const CreateLicense = props => {
       "Пароль должен включать 1 прописную и заглавную букву латинского алфавита, цифру, а также 1 спец. символ"
     ),
   })
-  const { register, handleSubmit, setValue, formState:{ errors } } = useForm({
+  const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
   });
   const onSubmit = () => {
