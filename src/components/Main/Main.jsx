@@ -13,7 +13,7 @@ export const Main = () => {
   const [categories, setCategories] = useState([])
   const [currentCat, setCurrentCat] = useState('Пользователи')
   const [listTypes, setListTypes] = useState([])
-  const [userStatus, setUserStatus] = useState('manager')
+  const [userStatus, setUserStatus] = useState('super')
   const [licenses, setLicenses] = useState(null)
   const [currentPopup, setCurrentPopup] = useState(null)
   useEffect(() => {
