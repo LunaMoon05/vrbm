@@ -73,21 +73,25 @@ export const CreateLicense = props => {
     },
   ]
   return (
-    <Popup>
-      <div className={s.titleBorder}>Создание новой лицензии</div>
-      <div className={s.formWrapper}>
-        {licenseFields.map(item => {
-          return <InputPopup key={item.name} error={errors[item.name]} register={register} name={item.name} label={item.label} />
-        })}
+    <Popup className={s.popupAdaptive}>
+      <div className={s.column}>
+        <div className={s.titleBorder}>Создание новой лицензии</div>
+        <div className={s.formWrapper}>
+          {licenseFields.map(item => {
+            return <InputPopup key={item.name} error={errors[item.name]} register={register} name={item.name} label={item.label} />
+          })}
+        </div>
       </div>
-      <div className={s.titleBorder}>Создание пользователя</div>
-      <div className={s.formWrapper}>
-        {userFields.map(item => {
-          return <InputPopup key={item.name} error={errors[item.name]} register={register} name={item.name} label={item.label} />
-        })}
-          <div className={s.btnWrapper}>
-            <MainBtn onClick={() => setCurrentPopup(null)} style={{marginRight: 10}} text='Закрыть' />
-            <MainBtn onClick={handleSubmit(onSubmit, onError)} text='Создать лицензию' />
+      <div className={s.column}>
+        <div className={s.titleBorder}>Создание пользователя</div>
+        <div className={s.formWrapper}>
+          {userFields.map(item => {
+            return <InputPopup key={item.name} error={errors[item.name]} register={register} name={item.name} label={item.label} />
+          })}
+            <div className={s.btnWrapper}>
+              <MainBtn onClick={() => setCurrentPopup(null)} style={{marginRight: 10}} text='Закрыть' />
+              <MainBtn onClick={handleSubmit(onSubmit, onError)} text='Создать лицензию' />
+          </div>
         </div>
       </div>
     </Popup>

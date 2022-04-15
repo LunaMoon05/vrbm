@@ -19,6 +19,13 @@
   }
 }
 
+.popupAdaptive {
+  @media(max-height: 900px) {
+    display: flex;
+    max-width: 900px;
+  }
+}
+
 .formWrapper {
   padding: 0 10px;
 }
@@ -61,4 +68,13 @@
 .error {
   font-size: 11px;
   color: red;
+}
+
+.column {
+  width: 50%;
+  &:not(:last-child) {
+    @media(max-height: 900px) {
+      margin-right: 20px;
+    }
+  }
 }

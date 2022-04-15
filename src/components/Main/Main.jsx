@@ -30,7 +30,7 @@ export const Main = () => {
     }
   }, [currentCat])
   return (
-    <section>
+    <section className={s.main}>
       {currentPopup === 'createLicense' && <CreateLicense setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'deleteLicense' && <DeleteLicense setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'returnLicense' && <ReturnLicense setCurrentPopup={setCurrentPopup} />}

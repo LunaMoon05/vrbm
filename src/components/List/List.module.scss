@@ -4,6 +4,9 @@
   padding-left: 8.5%;
   border-bottom: 2px solid black;
   padding-bottom: 6px;
+  @media(max-width: 1140px) {
+    padding-left: 6.5%;
+  }
   button {
     font-size: 15px;
     font-weight: bold;
@@ -24,13 +27,21 @@
     width: 100%;
     font-size: 15px;
     padding-left: 8.5%;
+    @media(max-width: 1140px) {
+      padding-left: 6.5%;
+    }
   }
 }
 
+
+
 .grow {
   width: 18.5%;
+  @media(max-width: 1140px) {
+    width: 16.5%;
+  }
   &Third {
-     width: 23%;
+    width: 23%;
   }
 }
 
@@ -38,6 +49,9 @@
   position: absolute;
   left: 4%;
   font-weight: bold;
+  @media(max-width: 1140px) {
+    left: 2.5%;
+  }
 }
 
 .btn {
