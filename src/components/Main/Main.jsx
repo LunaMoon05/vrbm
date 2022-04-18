@@ -8,6 +8,7 @@ import { CreateLicense } from '../Popup/CreateLicense';
 import { DeleteLicense } from '../Popup/DeleteLicense';
 import { ReturnLicense } from './../Popup/ReturnLicense';
 import { CreateUser } from './../Popup/CreateUser';
+import { Scene } from '../Scene/Scene';
 
 export const Main = () => {
   const [categories, setCategories] = useState([])
@@ -16,8 +17,13 @@ export const Main = () => {
   const [userStatus, setUserStatus] = useState('manager')
   const [licenses, setLicenses] = useState(null)
   const [currentPopup, setCurrentPopup] = useState(null)
+  const [scene, setScene] = useState(true)
   useEffect(() => {
     if(currentCat === 'Пользователи') {
+      const currentUserList = userStatus === 'super' ? userSuperTypes : userTypes
+      // const newList = currentUserList.map(item => {
+      //   return {...item, sortType: 0, sorting: () => sortArray(item)}
+      // })
       setListTypes(userStatus === 'super' ? userSuperTypes : userTypes)
       setLicenses(null)
     } else if(currentCat === 'Лицензии') {
@@ -36,9 +42,13 @@ export const Main = () => {
       {currentPopup === 'returnLicense' && <ReturnLicense setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'createUser' && <CreateUser setCurrentPopup={setCurrentPopup} />}
       <div className={s.container}>
-        <TopBar setCurrentPopup={setCurrentPopup} setLicenses={setLicenses} licenses={licenses} userStatus={userStatus} categories={categories} setCategories={setCategories} currentCat={currentCat} setCurrentCat={setCurrentCat} />
-        <List setCurrentPopup={setCurrentPopup} licenses={licenses} listTypes={listTypes} setListTypes={setListTypes} />
-        <BottomBar />
+        {scene ?? 
+        <div>
+          <TopBar setCurrentPopup={setCurrentPopup} setLicenses={setLicenses} licenses={licenses} userStatus={userStatus} categories={categories} setCategories={setCategories} currentCat={currentCat} setCurrentCat={setCurrentCat} />
+          <List setCurrentPopup={setCurrentPopup} licenses={licenses} listTypes={listTypes} setListTypes={setListTypes} />
+          <BottomBar />
+        </div>}
+        {scene && <Scene />}
       </div>
     </section>
   )
