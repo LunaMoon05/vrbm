@@ -9,6 +9,7 @@ import { DeleteLicense } from '../Popup/DeleteLicense';
 import { ReturnLicense } from './../Popup/ReturnLicense';
 import { CreateUser } from './../Popup/CreateUser';
 import { Scene } from '../Scene/Scene';
+import axios from 'axios';
 
 export const Main = () => {
   const [categories, setCategories] = useState([])
@@ -17,7 +18,15 @@ export const Main = () => {
   const [userStatus, setUserStatus] = useState('manager')
   const [licenses, setLicenses] = useState(null)
   const [currentPopup, setCurrentPopup] = useState(null)
-  const [scene, setScene] = useState(true)
+  const [scene, setScene] = useState(null)
+  useEffect(() => {
+    axios.post('http://localhost:8082/auth/login', {
+      "email": "superuser",
+      "password": "superuser"
+    }).then(resp => {
+      console.log('resp', resp)
+    })
+  }, [])
   useEffect(() => {
     if(currentCat === 'Пользователи') {
       const currentUserList = userStatus === 'super' ? userSuperTypes : userTypes
