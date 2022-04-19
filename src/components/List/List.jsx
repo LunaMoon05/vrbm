@@ -4,12 +4,17 @@ import { ListItem } from './ListItem/ListItem'
 import arrowSort from '../../assets/images/arrowSort.svg'
 
 export const List = props => {
-  const {listTypes, setCurrentPopup, licenses} = props
+  const {listTypes, currentCat, list, setCurrentPopup, licenses} = props
   // const sorting = (field, isReversed) => {
   //   const copyUsers = [...initialUsers];
   //   const sortedUsers = isReversed ? copyUsers.sort(sortArray(field)).reverse() : copyUsers.sort(sortArray(field));
   //   setUsers(sortedUsers);
   // };
+  const firstCol = currentCat === 'Пользователи' ? 'name' : currentCat === 'Лицензии' ? 'companyTitle' : null
+  const secondCol = currentCat === 'Пользователи' ? 'last_name' : currentCat === 'Лицензии' ? 'location' : null
+  const thirdCol = currentCat === 'Пользователи' ? 'email' : currentCat === 'Лицензии' ? 'numberOfAccounts' : null
+  const fourthCol = currentCat === 'Пользователи' ? 'company_title' : currentCat === 'Лицензии' ? 'publicationDate' : null
+  const fifthCol = currentCat === 'Пользователи' ? 'role' : currentCat === 'Лицензии' ? 'endLicenseDate' : null
   return (
     <section className={s.section}>
       <div className={s.categories}>
@@ -28,7 +33,16 @@ export const List = props => {
         })}
       </div>
       <div>
-        <ListItem setCurrentPopup={setCurrentPopup} data={{fourthCol: 's'}} licenses={licenses} />
+        {list.map((item, index) => {
+          const data = {
+            firstCol: item[firstCol], 
+            secondCol: item[secondCol], 
+            thirdCol: item[thirdCol], 
+            fourthCol: currentCat === 'Лицензии' ? item[fourthCol]?.slice(0, 10) : item[fourthCol], 
+            fifthCol: currentCat === 'Лицензии' ? item[fifthCol]?.slice(0, 10) : item[fifthCol]
+          }
+          return <ListItem key={index} setCurrentPopup={setCurrentPopup} data={data} licenses={licenses} />
+        })}
       </div>
     </section>
   )

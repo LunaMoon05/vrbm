@@ -71,9 +71,9 @@
 }
 
 .column {
-  width: 50%;
-  &:not(:last-child) {
-    @media(max-height: 900px) {
+  @media(max-height: 900px) {
+    width: 50%;
+    &:not(:last-child) {
       margin-right: 20px;
     }
   }

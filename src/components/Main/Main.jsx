@@ -10,23 +10,39 @@ import { ReturnLicense } from './../Popup/ReturnLicense';
 import { CreateUser } from './../Popup/CreateUser';
 import { Scene } from '../Scene/Scene';
 import axios from 'axios';
+import { baseURL } from './../../helpers/baseURL';
 
 export const Main = () => {
   const [categories, setCategories] = useState([])
   const [currentCat, setCurrentCat] = useState('Пользователи')
   const [listTypes, setListTypes] = useState([])
-  const [userStatus, setUserStatus] = useState('manager')
+  const [userStatus, setUserStatus] = useState('super')
   const [licenses, setLicenses] = useState(null)
   const [currentPopup, setCurrentPopup] = useState(null)
   const [scene, setScene] = useState(null)
+  const [token, setToken] = useState(null)
+  const [list, setList] = useState([])
   useEffect(() => {
-    axios.post('http://localhost:8082/auth/login', {
+    axios.post(`${baseURL}/auth/login`, {
       "email": "superuser",
       "password": "superuser"
     }).then(resp => {
-      console.log('resp', resp)
+      setToken('Bearer_' + resp.data.token)
     })
   }, [])
+  useEffect(() => {
+    if(token) {
+      if(currentCat === 'Пользователи') {
+        axios.get(`${baseURL}/account`, {headers: {Authorization: token}}).then(resp => {
+          setList(resp?.data?.data)
+        })
+      } else if(currentCat === 'Лицензии') {
+        axios.get(`${baseURL}/organization`, {headers: {Authorization: token}}).then(resp => {
+          setList(resp?.data?.data)
+        })
+      }
+    }
+  }, [token, currentCat])
   useEffect(() => {
     if(currentCat === 'Пользователи') {
       const currentUserList = userStatus === 'super' ? userSuperTypes : userTypes
@@ -54,7 +70,7 @@ export const Main = () => {
         {scene ?? 
         <div>
           <TopBar setCurrentPopup={setCurrentPopup} setLicenses={setLicenses} licenses={licenses} userStatus={userStatus} categories={categories} setCategories={setCategories} currentCat={currentCat} setCurrentCat={setCurrentCat} />
-          <List setCurrentPopup={setCurrentPopup} licenses={licenses} listTypes={listTypes} setListTypes={setListTypes} />
+          <List currentCat={currentCat} list={list} setCurrentPopup={setCurrentPopup} licenses={licenses} listTypes={listTypes} setListTypes={setListTypes} />
           <BottomBar />
         </div>}
         {scene && <Scene />}
