@@ -42,13 +42,13 @@ export const CreateUser = props => {
       name: getValues().name,
       password: getValues().password
     }
-    axios.post(`${baseURL}/auth/reg`, data, {headers: {Authorization: token}}).then(resp => {
+    axios.post(`${baseURL}/auth/reg${getValues().role === 'Организатор' ? '/admin' : ''}`, data, {headers: {Authorization: token}}).then(resp => {
       console.log('resp', resp)
       axios.get(`${baseURL}/account`, {headers: {Authorization: token}}).then(accountResp => {
         setList(accountResp?.data?.data)
         setCurrentPopup(null)
       })
-    }, (err) => console.log('err', err))
+    })
   }
   const onError = () => {
     console.log('getVluas', getValues())

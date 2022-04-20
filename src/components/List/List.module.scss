@@ -83,3 +83,13 @@
     }
   }
 }
+
+.icon {
+  &:not(:last-child) {
+    margin-right: 25px;
+  }
+  img {
+    width: 27px;
+    height: 27px;
+  }
+}

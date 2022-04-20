@@ -11,6 +11,7 @@ import { CreateUser } from './../Popup/CreateUser';
 import { Scene } from '../Scene/Scene';
 import axios from 'axios';
 import { baseURL } from './../../helpers/baseURL';
+import { DeleteUser } from './../Popup/DeleteUser';
 
 export const Main = () => {
   const [categories, setCategories] = useState([])
@@ -66,6 +67,7 @@ export const Main = () => {
     <section className={s.main}>
       {currentPopup === 'createLicense' && <CreateLicense setList={setList} token={token} setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'deleteLicense' && <DeleteLicense currentItem={currentItem} token={token} setCurrentPopup={setCurrentPopup} />}
+      {currentPopup === 'deleteUser' && <DeleteUser setList={setList} currentItem={currentItem} token={token} setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'returnLicense' && <ReturnLicense token={token} setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'createUser' && <CreateUser setList={setList} token={token} setCurrentPopup={setCurrentPopup} />}
       <div className={s.container}>
