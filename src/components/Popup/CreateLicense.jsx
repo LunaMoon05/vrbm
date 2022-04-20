@@ -6,9 +6,11 @@ import s from './Popup.module.scss'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import { InputPopup } from './InputPopup'
+import { baseURL } from './../../helpers/baseURL';
+import axios from 'axios'
 
 export const CreateLicense = props => {
-  const {setCurrentPopup} = props
+  const {setCurrentPopup, token} = props
   const schema = yup.object({
     company: yup.string().required('Обязательное поле'),
     url: yup.string().required('Обязательное поле'),
@@ -23,11 +25,21 @@ export const CreateLicense = props => {
       "Пароль должен включать 1 прописную и заглавную букву латинского алфавита, цифру, а также 1 спец. символ"
     ),
   })
-  const { register, handleSubmit, formState:{ errors } } = useForm({
+  const { register, handleSubmit, getValues, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
   });
   const onSubmit = () => {
-    console.log('success')
+    const data = {
+      company_title: getValues().company,
+      company_url: getValues().url,
+      end_of_license_day: '2022-04-19T13:28:18.819Z',
+      location: getValues().location,
+      name: getValues().name,
+      number_of_accounts: getValues().accountsCount
+    }
+    axios.post(`${baseURL}/organization`, data, {headers: {Authorization: token}}).then(resp => {
+      console.log('resp', resp)
+    })
   }
   const onError = () => {
     console.log('errors:', errors)

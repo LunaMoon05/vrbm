@@ -4,7 +4,7 @@ import { ListItem } from './ListItem/ListItem'
 import arrowSort from '../../assets/images/arrowSort.svg'
 
 export const List = props => {
-  const {listTypes, currentCat, list, setCurrentPopup, licenses} = props
+  const {listTypes, setCurrentItem, page, userStatus, currentCat, list, setCurrentPopup, licenses} = props
   // const sorting = (field, isReversed) => {
   //   const copyUsers = [...initialUsers];
   //   const sortedUsers = isReversed ? copyUsers.sort(sortArray(field)).reverse() : copyUsers.sort(sortArray(field));
@@ -39,9 +39,19 @@ export const List = props => {
             secondCol: item[secondCol], 
             thirdCol: item[thirdCol], 
             fourthCol: currentCat === 'Лицензии' ? item[fourthCol]?.slice(0, 10) : item[fourthCol], 
-            fifthCol: currentCat === 'Лицензии' ? item[fifthCol]?.slice(0, 10) : item[fifthCol]
+            fifthCol: currentCat === 'Лицензии' ? item[fifthCol]?.slice(0, 10) : item[fifthCol],
+            id: item?.id
           }
-          return <ListItem key={index} setCurrentPopup={setCurrentPopup} data={data} licenses={licenses} />
+          return <ListItem 
+          page={page}
+          pos={(index + 1) + ((page - 1) * 4)}
+          currentCat={currentCat} 
+          key={index}
+          setCurrentItem={setCurrentItem}
+          userStatus={userStatus} 
+          setCurrentPopup={setCurrentPopup} 
+          data={data} 
+          licenses={licenses} />
         })}
       </div>
     </section>

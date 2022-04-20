@@ -78,3 +78,16 @@
     }
   }
 }
+
+.date {
+  width: 100%;
+  padding: 7px;
+  font-size: 15px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid $grey;
+  margin: 10px 0px 15px 0px;
+  &Calendar {
+    height: 266px;
+  }
+}

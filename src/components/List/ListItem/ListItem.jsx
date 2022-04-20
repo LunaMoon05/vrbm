@@ -4,7 +4,12 @@ import deleteIcon from '../../../assets/images/delete.svg'
 import { MainBtn } from '../../common/MainBtn/MainBtn'
 
 export const ListItem = props => {
-  const {pos, setCurrentPopup, licenses, data} = props
+  const {setCurrentPopup, setCurrentItem, pos, currentCat, userStatus, licenses, data} = props
+  const isManagerUsers = currentCat === 'Пользователи' && userStatus === 'manager'
+  const onDelete = () => {
+    setCurrentItem(data?.id)
+    setCurrentPopup('deleteLicense')
+  }
   return (
     <div className={s.item}>
       <div className={s.position}>{pos ?? '0'}</div>
@@ -12,10 +17,10 @@ export const ListItem = props => {
         <div className={s.grow}>{data?.firstCol ?? 'Имя'}</div>
         <div className={s.grow}>{data?.secondCol ?? 'Фамилия'}</div>
         <div className={`${s.grow} ${s.growThird}`}>{data?.thirdCol ?? 'E-mail'}</div>
-        {data?.fourthCol && <div className={s.grow}>{data?.fourthCol}</div>}
+        {isManagerUsers ? null : <div className={s.grow}>{data?.fourthCol}</div>}
         <div style={licenses === 'blocked' ? {width: '10%'} : null} className={s.grow}>{data?.fifthCol ?? 'Роль'}</div>
         {licenses === 'active' ? 
-        <button onClick={() => setCurrentPopup('deleteLicense')} className={s.btn}>
+        <button onClick={onDelete} className={s.btn}>
           <img src={deleteIcon} alt="" />
         </button> : licenses === 'blocked' ? <MainBtn onClick={() => setCurrentPopup('returnLicense')} text='Восстановить' /> : null}
       </div>

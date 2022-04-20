@@ -16,12 +16,14 @@ export const Main = () => {
   const [categories, setCategories] = useState([])
   const [currentCat, setCurrentCat] = useState('Пользователи')
   const [listTypes, setListTypes] = useState([])
-  const [userStatus, setUserStatus] = useState('super')
+  const [userStatus, setUserStatus] = useState('manager')
   const [licenses, setLicenses] = useState(null)
   const [currentPopup, setCurrentPopup] = useState(null)
   const [scene, setScene] = useState(null)
   const [token, setToken] = useState(null)
   const [list, setList] = useState([])
+  const [page, setPage] = useState(1)
+  const [currentItem, setCurrentItem] = useState(null)
   useEffect(() => {
     axios.post(`${baseURL}/auth/login`, {
       "email": "superuser",
@@ -62,15 +64,30 @@ export const Main = () => {
   }, [currentCat])
   return (
     <section className={s.main}>
-      {currentPopup === 'createLicense' && <CreateLicense setCurrentPopup={setCurrentPopup} />}
-      {currentPopup === 'deleteLicense' && <DeleteLicense setCurrentPopup={setCurrentPopup} />}
-      {currentPopup === 'returnLicense' && <ReturnLicense setCurrentPopup={setCurrentPopup} />}
-      {currentPopup === 'createUser' && <CreateUser setCurrentPopup={setCurrentPopup} />}
+      {currentPopup === 'createLicense' && <CreateLicense setList={setList} token={token} setCurrentPopup={setCurrentPopup} />}
+      {currentPopup === 'deleteLicense' && <DeleteLicense currentItem={currentItem} token={token} setCurrentPopup={setCurrentPopup} />}
+      {currentPopup === 'returnLicense' && <ReturnLicense token={token} setCurrentPopup={setCurrentPopup} />}
+      {currentPopup === 'createUser' && <CreateUser setList={setList} token={token} setCurrentPopup={setCurrentPopup} />}
       <div className={s.container}>
         {scene ?? 
         <div>
-          <TopBar setCurrentPopup={setCurrentPopup} setLicenses={setLicenses} licenses={licenses} userStatus={userStatus} categories={categories} setCategories={setCategories} currentCat={currentCat} setCurrentCat={setCurrentCat} />
-          <List currentCat={currentCat} list={list} setCurrentPopup={setCurrentPopup} licenses={licenses} listTypes={listTypes} setListTypes={setListTypes} />
+          <TopBar 
+          setCurrentPopup={setCurrentPopup} 
+          setLicenses={setLicenses} 
+          licenses={licenses} 
+          userStatus={userStatus} categories={categories} 
+          setCategories={setCategories} 
+          currentCat={currentCat} 
+          setCurrentCat={setCurrentCat} />
+          <List
+          page={page}
+          userStatus={userStatus} 
+          currentCat={currentCat} 
+          list={list} 
+          setCurrentPopup={setCurrentPopup} 
+          licenses={licenses} listTypes={listTypes} 
+          setListTypes={setListTypes}
+          setCurrentItem={setCurrentItem} />
           <BottomBar />
         </div>}
         {scene && <Scene />}
