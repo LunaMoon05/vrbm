@@ -50,6 +50,7 @@ export const List = props => {
           setCurrentItem={setCurrentItem}
           userStatus={userStatus} 
           setCurrentPopup={setCurrentPopup} 
+          item={item}
           data={data} 
           licenses={licenses} />
         })}

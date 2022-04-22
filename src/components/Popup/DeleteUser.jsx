@@ -8,7 +8,7 @@ import { baseURL } from './../../helpers/baseURL';
 export const DeleteUser = props => {
   const {setCurrentPopup, setList, currentItem, token} = props
   const deleteHandler = () => {
-    axios.delete(`${baseURL}/account/${currentItem}`, {headers: {Authorization: token}}).then(resp => {
+    axios.delete(`${baseURL}/account/${currentItem?.email}`, {headers: {Authorization: token}}).then(resp => {
       console.log('delete resp:', resp)
       axios.get(`${baseURL}/account`, {headers: {Authorization: token}}).then(accountResp => {
         setList(accountResp?.data?.data)

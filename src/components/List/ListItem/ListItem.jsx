@@ -5,14 +5,17 @@ import { MainBtn } from '../../common/MainBtn/MainBtn'
 import editIcon from '../../../assets/images/edit.svg'
 
 export const ListItem = props => {
-  const {setCurrentPopup, setCurrentItem, pos, currentCat, userStatus, licenses, data} = props
+  const {setCurrentPopup, setCurrentItem, item, pos, currentCat, userStatus, licenses, data} = props
   const isManagerUsers = currentCat === 'Пользователи' && userStatus === 'manager'
   const onDelete = deleteType => {
-    if(deleteType === 'deleteUser') {
-      setCurrentItem(data?.thirdCol)
-    } else if(deleteType === 'deleteLicense') {
-      setCurrentItem(data?.id)
-    }
+    // if(deleteType === 'deleteUser') {
+    //   setCurrentItem(data?.thirdCol)
+    // } else if(deleteType === 'deleteLicense') {
+    //   setCurrentItem(data?.id)
+    // } else if(deleteType === 'editUser') {
+    //   setCurrentItem(data)
+    // }
+    setCurrentItem(item)
     setCurrentPopup(deleteType)
   }
   return (
@@ -30,7 +33,7 @@ export const ListItem = props => {
         </button> : licenses === 'blocked' ? <MainBtn onClick={() => setCurrentPopup('returnLicense')} text='Восстановить' /> : null}
         {currentCat === 'Пользователи' && userStatus === 'manager' ? 
         <div>
-          <button className={s.icon}>
+          <button onClick={() => onDelete('editUser')} className={s.icon}>
             <img src={editIcon} alt='Редактировать пользователя' />
           </button>
           <button onClick={() => onDelete('deleteUser')} className={s.icon}>

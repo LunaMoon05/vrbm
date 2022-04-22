@@ -12,12 +12,13 @@ import { Scene } from '../Scene/Scene';
 import axios from 'axios';
 import { baseURL } from './../../helpers/baseURL';
 import { DeleteUser } from './../Popup/DeleteUser';
+import { EditUser } from './../Popup/EditUser';
 
 export const Main = () => {
   const [categories, setCategories] = useState([])
   const [currentCat, setCurrentCat] = useState('Пользователи')
   const [listTypes, setListTypes] = useState([])
-  const [userStatus, setUserStatus] = useState('manager')
+  const [userStatus, setUserStatus] = useState('super')
   const [licenses, setLicenses] = useState(null)
   const [currentPopup, setCurrentPopup] = useState(null)
   const [scene, setScene] = useState(null)
@@ -36,7 +37,7 @@ export const Main = () => {
   useEffect(() => {
     if(token) {
       if(currentCat === 'Пользователи') {
-        axios.get(`${baseURL}/account`, {headers: {Authorization: token}}).then(resp => {
+        axios.get(`${baseURL}/account?page=2&size=4`, {headers: {Authorization: token}}).then(resp => {
           setList(resp?.data?.data)
         })
       } else if(currentCat === 'Лицензии') {
@@ -70,6 +71,7 @@ export const Main = () => {
       {currentPopup === 'deleteUser' && <DeleteUser setList={setList} currentItem={currentItem} token={token} setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'returnLicense' && <ReturnLicense token={token} setCurrentPopup={setCurrentPopup} />}
       {currentPopup === 'createUser' && <CreateUser setList={setList} token={token} setCurrentPopup={setCurrentPopup} />}
+      {currentPopup === 'editUser' && <EditUser currentItem={currentItem} setList={setList} token={token} setCurrentPopup={setCurrentPopup} />}
       <div className={s.container}>
         {scene ?? 
         <div>
