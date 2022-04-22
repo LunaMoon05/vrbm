@@ -31,8 +31,8 @@ export const ListItem = props => {
         <button onClick={() => onDelete('deleteLicense')} className={s.btn}>
           <img src={deleteIcon} alt="" />
         </button> : licenses === 'blocked' ? <MainBtn onClick={() => setCurrentPopup('returnLicense')} text='Восстановить' /> : null}
-        {currentCat === 'Пользователи' && userStatus === 'manager' ? 
-        <div>
+        {currentCat === 'Пользователи' ? 
+        <div className={s.btnsWrapper}>
           <button onClick={() => onDelete('editUser')} className={s.icon}>
             <img src={editIcon} alt='Редактировать пользователя' />
           </button>

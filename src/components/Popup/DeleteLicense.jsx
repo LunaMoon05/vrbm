@@ -7,8 +7,9 @@ import { baseURL } from './../../helpers/baseURL';
 
 export const DeleteLicense = props => {
   const {setCurrentPopup, currentItem, token} = props
+  console.log('currentItem', currentItem)
   const deleteHandler = () => {
-    axios.delete(`${baseURL}/organization/${currentItem}`, {headers: {Authorization: token}}).then(resp => {
+    axios.delete(`${baseURL}/organization/${currentItem?.id}`, {headers: {Authorization: token}}).then(resp => {
       console.log('delete resp:', resp)
       setCurrentPopup(null)
     })
